@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "UIControl+Block.h"
 
 @interface ViewController ()
+
+@property (weak, nonatomic) IBOutlet UIButton *button;
 
 @end
 
@@ -17,7 +20,38 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-}
+    
+    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"-----111111");
+    } forControlEvents:UIControlEventTouchDown];
 
+    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"-----222222");
+    } forControlEvents:UIControlEventTouchDown];
+
+    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"-----333333");
+    } forControlEvents:UIControlEventTouchDown];
+    
+    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"-----444444");
+    } forControlEvents:UIControlEventTouchDown];
+
+    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"111111");
+    } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+
+    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"222222");
+    } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+    
+    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"333333");
+    } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+
+    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"444444");
+    } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+}
 
 @end

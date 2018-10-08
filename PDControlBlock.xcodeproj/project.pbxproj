@@ -15,6 +15,7 @@
 		EC2927EB216B0D91006C16A3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2927EA216B0D91006C16A3 /* main.m */; };
 		EC2927F5216B0D92006C16A3 /* PDControlBlockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2927F4216B0D92006C16A3 /* PDControlBlockTests.m */; };
 		EC292800216B0D92006C16A3 /* PDControlBlockUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2927FF216B0D92006C16A3 /* PDControlBlockUITests.m */; };
+		EC292810216B2BAF006C16A3 /* UIControl+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = EC29280F216B2BAF006C16A3 /* UIControl+Block.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,8 @@
 		EC2927FB216B0D92006C16A3 /* PDControlBlockUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PDControlBlockUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2927FF216B0D92006C16A3 /* PDControlBlockUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PDControlBlockUITests.m; sourceTree = "<group>"; };
 		EC292801216B0D92006C16A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC29280E216B2BAF006C16A3 /* UIControl+Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIControl+Block.h"; sourceTree = "<group>"; };
+		EC29280F216B2BAF006C16A3 /* UIControl+Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIControl+Block.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,7 @@
 		EC2927DA216B0D8F006C16A3 /* PDControlBlock */ = {
 			isa = PBXGroup;
 			children = (
+				EC29280D216B2B9D006C16A3 /* Source */,
 				EC2927DB216B0D8F006C16A3 /* AppDelegate.h */,
 				EC2927DC216B0D8F006C16A3 /* AppDelegate.m */,
 				EC2927DE216B0D8F006C16A3 /* ViewController.h */,
@@ -130,6 +134,15 @@
 				EC292801216B0D92006C16A3 /* Info.plist */,
 			);
 			path = PDControlBlockUITests;
+			sourceTree = "<group>";
+		};
+		EC29280D216B2B9D006C16A3 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				EC29280E216B2BAF006C16A3 /* UIControl+Block.h */,
+				EC29280F216B2BAF006C16A3 /* UIControl+Block.m */,
+			);
+			path = Source;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +276,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EC2927E0216B0D8F006C16A3 /* ViewController.m in Sources */,
+				EC292810216B2BAF006C16A3 /* UIControl+Block.m in Sources */,
 				EC2927EB216B0D91006C16A3 /* main.m in Sources */,
 				EC2927DD216B0D8F006C16A3 /* AppDelegate.m in Sources */,
 			);

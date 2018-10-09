@@ -52,6 +52,8 @@
     [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"444444");
     } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+
+    [self.button removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

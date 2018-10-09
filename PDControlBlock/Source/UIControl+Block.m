@@ -38,14 +38,15 @@ static void eventHandlerImpl(id self, SEL op, id target) {
 
 - (void)addEventHandler:(void (^)(__kindof UIControl * _Nonnull))eventHandler forControlEvents:(UIControlEvents)controlEvents replaceBefore:(BOOL)replaceBefore {
     
-    NSString *eventKey = [NSString stringWithFormat:@"%lu", controlEvents];
-    SEL sel = NSSelectorFromString([NSString stringWithFormat:@"eventHandler_%lu:", controlEvents]);
+    NSAssert(eventHandler, @"Param eventHandler can not be nil!");
     
+    NSString *eventKey = [NSString stringWithFormat:@"%lu", controlEvents];
     NSMutableArray<void (^)(__kindof UIControl *)> *eventHandlers = self.eventHandlers[eventKey];
     
     if (!eventHandlers) {
         eventHandlers = [NSMutableArray array];
         
+        SEL sel = NSSelectorFromString([NSString stringWithFormat:@"eventHandler_%lu:", controlEvents]);
         class_addMethod([self class], sel, (IMP)eventHandlerImpl, "v@:@");
         [self addTarget:self action:sel forControlEvents:controlEvents];
     }
@@ -57,6 +58,16 @@ static void eventHandlerImpl(id self, SEL op, id target) {
     if (eventHandler) {
         [eventHandlers addObject:[eventHandler copy]];
     }
+    self.eventHandlers[eventKey] = eventHandlers;
+}
+
+- (void)removeEventHandlersForControlEvents:(UIControlEvents)controlEvents {
+    
+    NSString *eventKey = [NSString stringWithFormat:@"%lu", controlEvents];
+    NSMutableArray<void (^)(__kindof UIControl *)> *eventHandlers = self.eventHandlers[eventKey];
+    if (!eventHandlers.count) return;
+
+    [eventHandlers removeAllObjects];
     self.eventHandlers[eventKey] = eventHandlers;
 }
 

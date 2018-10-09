@@ -33,10 +33,10 @@ static void eventHandlerImpl(id self, SEL op, id target) {
 }
 
 - (void)addEventHandler:(void (^)(__kindof UIControl * _Nonnull))eventHandler forControlEvents:(UIControlEvents)controlEvents {
-    [self addEventHandler:eventHandler forControlEvents:controlEvents replaceBefore:YES];
+    [self addEventHandler:eventHandler forControlEvents:controlEvents replaceLast:YES];
 }
 
-- (void)addEventHandler:(void (^)(__kindof UIControl * _Nonnull))eventHandler forControlEvents:(UIControlEvents)controlEvents replaceBefore:(BOOL)replaceBefore {
+- (void)addEventHandler:(void (^)(__kindof UIControl * _Nonnull))eventHandler forControlEvents:(UIControlEvents)controlEvents replaceLast:(BOOL)replaceLast {
     
     NSAssert(eventHandler, @"Param eventHandler can not be nil!");
     
@@ -51,8 +51,8 @@ static void eventHandlerImpl(id self, SEL op, id target) {
         [self addTarget:self action:sel forControlEvents:controlEvents];
     }
     
-    if (replaceBefore) {
-        [eventHandlers removeAllObjects];
+    if (replaceLast && eventHandlers.count > 0) {
+        [eventHandlers removeLastObject];
     }
     
     if (eventHandler) {

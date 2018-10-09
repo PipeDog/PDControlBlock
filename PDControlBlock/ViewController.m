@@ -39,21 +39,21 @@
 
     [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"111111");
-    } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+    } forControlEvents:UIControlEventTouchUpInside replaceLast:NO];
 
     [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"222222");
-    } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+    } forControlEvents:UIControlEventTouchUpInside replaceLast:YES];
     
     [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"333333");
-    } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+    } forControlEvents:UIControlEventTouchUpInside replaceLast:YES];
 
     [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"444444");
-    } forControlEvents:UIControlEventTouchUpInside replaceBefore:NO];
+    } forControlEvents:UIControlEventTouchUpInside replaceLast:NO];
 
-    [self.button removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
+//    [self.button removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
 }
 
 @end

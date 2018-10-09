@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Invoke method [- addEventHandler:forControlEvents:replaceBefore:], param replaceBefore is YES.
 - (void)addEventHandler:(void (^)(__kindof UIControl *control))eventHandler forControlEvents:(UIControlEvents)controlEvents;
 
-/// If replaceBefore is YES, remove the old eventHandler and append the new eventHandler.
+/// If replaceBefore is YES, remove the old eventHandlers and append the new eventHandler.
 /// If replaceBefore is NO, append the new eventHandler and keep the old eventHandler.
 - (void)addEventHandler:(void (^)(__kindof UIControl *control))eventHandler forControlEvents:(UIControlEvents)controlEvents replaceBefore:(BOOL)replaceBefore;
 

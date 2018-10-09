@@ -54,7 +54,9 @@ static void eventHandlerImpl(id self, SEL op, id target) {
         [eventHandlers removeAllObjects];
     }
     
-    [eventHandlers addObject:[eventHandler copy]];
+    if (eventHandler) {
+        [eventHandlers addObject:[eventHandler copy]];
+    }
     self.eventHandlers[eventKey] = eventHandlers;
 }
 

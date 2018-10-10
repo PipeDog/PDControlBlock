@@ -21,39 +21,43 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
-        NSLog(@"-----111111");
-    } forControlEvents:UIControlEventTouchDown];
-
-    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
-        NSLog(@"-----222222");
-    } forControlEvents:UIControlEventTouchDown];
-
-    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
-        NSLog(@"-----333333");
-    } forControlEvents:UIControlEventTouchDown];
-    
-    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
-        NSLog(@"-----444444");
-    } forControlEvents:UIControlEventTouchDown];
-
-    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+    [self.button addActionForControlEvents:UIControlEventTouchUpInside usingBlock:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"111111");
-    } forControlEvents:UIControlEventTouchUpInside replaceLast:NO];
+    }];
 
-    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+    [self.button addActionForControlEvents:UIControlEventTouchUpInside usingBlock:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"222222");
-    } forControlEvents:UIControlEventTouchUpInside replaceLast:YES];
+    }];
     
-    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+    [self.button removeActionsForControlEvents:UIControlEventTouchUpInside];
+
+    [self.button addActionForControlEvents:UIControlEventTouchUpInside usingBlock:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"333333");
-    } forControlEvents:UIControlEventTouchUpInside replaceLast:YES];
-
-    [self.button addEventHandler:^(__kindof UIControl * _Nonnull control) {
+    }];
+    
+    [self.button addActionForControlEvents:UIControlEventTouchUpInside usingBlock:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"444444");
-    } forControlEvents:UIControlEventTouchUpInside replaceLast:NO];
+    }];
+    
+    
+    [self.button addActionForControlEvents:UIControlEventTouchDown usingBlock:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"---111111");
+    }];
+    
+    [self.button removeActionsForControlEvents:UIControlEventTouchDown];
 
-//    [self.button removeEventHandlersForControlEvents:UIControlEventTouchUpInside];
+    [self.button addActionForControlEvents:UIControlEventTouchDown usingBlock:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"---222222");
+    }];
+    
+    [self.button addActionForControlEvents:UIControlEventTouchDown usingBlock:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"---333333");
+    }];
+    
+    [self.button addActionForControlEvents:UIControlEventTouchDown usingBlock:^(__kindof UIControl * _Nonnull control) {
+        NSLog(@"---444444");
+    }];
+
 }
 
 @end

@@ -11,7 +11,7 @@
 
 @interface UIControl ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSString *, NSMutableArray<void (^)(__kindof UIControl *)> *> *eventHandlers;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSMutableArray<void (^)(__kindof UIControl *)> *> *allActions;
 
 @end
 
@@ -25,60 +25,47 @@ static void eventHandlerImpl(id self, SEL op, id target) {
     NSString *eventKey = [selName substringWithRange:NSMakeRange(fromIndex, toIndex - fromIndex)];
     
     UIControl *control = (UIControl *)self;
-    NSMutableArray<void (^)(__kindof UIControl *)> *eventHandlers = control.eventHandlers[eventKey];
+    NSMutableArray<void (^)(__kindof UIControl *)> *actionsForControlEvents = control.allActions[@([eventKey integerValue])];
     
-    for (void (^eventHandler)(UIControl *) in eventHandlers) {
-        if (eventHandler) eventHandler(control);
+    for (void (^block)(UIControl *) in actionsForControlEvents) {
+        if (block) block(control);
     }
 }
 
-- (void)addEventHandler:(void (^)(__kindof UIControl * _Nonnull))eventHandler forControlEvents:(UIControlEvents)controlEvents {
-    [self addEventHandler:eventHandler forControlEvents:controlEvents replaceLast:YES];
-}
+- (void)addActionForControlEvents:(UIControlEvents)controlEvents usingBlock:(void (^)(__kindof UIControl * _Nonnull))block {
+    if (!block) {
+        return;
+    }
 
-- (void)addEventHandler:(void (^)(__kindof UIControl * _Nonnull))eventHandler forControlEvents:(UIControlEvents)controlEvents replaceLast:(BOOL)replaceLast {
+    NSMutableArray<void (^)(__kindof UIControl *)> *actionsForControlEvents = self.allActions[@(controlEvents)];
     
-    NSAssert(eventHandler, @"Param eventHandler can not be nil!");
-    
-    NSString *eventKey = [NSString stringWithFormat:@"%lu", controlEvents];
-    NSMutableArray<void (^)(__kindof UIControl *)> *eventHandlers = self.eventHandlers[eventKey];
-    
-    if (!eventHandlers) {
-        eventHandlers = [NSMutableArray array];
+    if (!actionsForControlEvents) {
+        actionsForControlEvents = [NSMutableArray array];
         
         SEL sel = NSSelectorFromString([NSString stringWithFormat:@"eventHandler_%lu:", controlEvents]);
         class_addMethod([self class], sel, (IMP)eventHandlerImpl, "v@:@");
         [self addTarget:self action:sel forControlEvents:controlEvents];
     }
     
-    if (replaceLast && eventHandlers.count > 0) {
-        [eventHandlers removeLastObject];
-    }
-    
-    if (eventHandler) {
-        [eventHandlers addObject:[eventHandler copy]];
-    }
-    self.eventHandlers[eventKey] = eventHandlers;
+    [actionsForControlEvents addObject:[block copy]];
+    self.allActions[@(controlEvents)] = actionsForControlEvents;
 }
 
-- (void)removeEventHandlersForControlEvents:(UIControlEvents)controlEvents {
+- (void)removeActionsForControlEvents:(UIControlEvents)controlEvents {
+    NSMutableArray<void (^)(__kindof UIControl *)> *actionsForControlEvents = self.allActions[@(controlEvents)];
+    if (!actionsForControlEvents.count) return;
     
-    NSString *eventKey = [NSString stringWithFormat:@"%lu", controlEvents];
-    NSMutableArray<void (^)(__kindof UIControl *)> *eventHandlers = self.eventHandlers[eventKey];
-    if (!eventHandlers.count) return;
-
-    [eventHandlers removeAllObjects];
-    self.eventHandlers[eventKey] = eventHandlers;
+    [actionsForControlEvents removeAllObjects];
 }
 
 #pragma mark - Getter Methods
-- (NSMutableDictionary<NSString *,void (^)(UIControl *)> *)eventHandlers {
-    NSMutableDictionary *eventHandlers = objc_getAssociatedObject(self, _cmd);
-    if (!eventHandlers) {
-        eventHandlers = [NSMutableDictionary dictionary];
-        objc_setAssociatedObject(self, _cmd, eventHandlers, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (NSMutableDictionary<NSString *, NSMutableArray<void (^)(UIControl *)> *> *)allActions {
+    NSMutableDictionary *allActions = objc_getAssociatedObject(self, _cmd);
+    if (!allActions) {
+        allActions = [NSMutableDictionary dictionary];
+        objc_setAssociatedObject(self, _cmd, allActions, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-    return eventHandlers;
+    return allActions;
 }
 
 @end

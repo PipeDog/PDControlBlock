@@ -22,10 +22,10 @@ static void eventHandlerImpl(id self, SEL op, id target) {
     NSUInteger toIndex = [selName rangeOfString:@":"].location;
     NSUInteger fromIndex = @"eventHandler_".length;
     
-    NSString *eventKey = [selName substringWithRange:NSMakeRange(fromIndex, toIndex - fromIndex)];
+    NSString *controlEventsKey = [selName substringWithRange:NSMakeRange(fromIndex, toIndex - fromIndex)];
     
     UIControl *control = (UIControl *)self;
-    NSMutableArray<void (^)(__kindof UIControl *)> *actionsForControlEvents = control.allActions[@([eventKey integerValue])];
+    NSMutableArray<void (^)(__kindof UIControl *)> *actionsForControlEvents = control.allActions[@([controlEventsKey integerValue])];
     
     for (void (^block)(UIControl *) in actionsForControlEvents) {
         if (block) block(control);

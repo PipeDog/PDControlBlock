@@ -64,6 +64,20 @@
     [wrappersForControlEvents removeAllObjects];
 }
 
+- (void)removeAllActions {
+    NSArray<NSNumber *> *allKeys = [self.allWrappers.allKeys copy];
+    
+    for (NSNumber *controlEvents in allKeys) {
+        NSArray<PDActionWrapper *> *wrappers = [self.allWrappers[controlEvents] copy];
+        
+        for (PDActionWrapper *wrapper in wrappers) {
+            [self removeTarget:wrapper action:@selector(triggerAction:) forControlEvents:[controlEvents unsignedIntegerValue]];
+        }
+    }
+    
+    [self.allWrappers removeAllObjects];
+}
+
 #pragma mark - Getter Methods
 - (NSMutableDictionary<NSNumber *,NSMutableArray<PDActionWrapper *> *> *)allWrappers {
     NSMutableDictionary *_allWrappers = objc_getAssociatedObject(self, _cmd);

@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)removeActionsForControlEvents:(UIControlEvents)controlEvents;
 
+- (void)removeAllActions;
+
 @end
 
 NS_ASSUME_NONNULL_END

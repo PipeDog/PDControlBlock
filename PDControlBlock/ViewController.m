@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "UIControl+Block.h"
+#import "UIGestureRecognizer+Block.h"
 
 @interface ViewController ()
 
@@ -57,7 +58,30 @@
     [self.button addActionForControlEvents:UIControlEventTouchDown usingBlock:^(__kindof UIControl * _Nonnull control) {
         NSLog(@"---444444");
     }];
+    
+//    [self.button removeAllActions];
 
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithActionUsingBlock:^(UIGestureRecognizer * _Nonnull sender) {
+        NSLog(@"sender.state = %zd", sender.state);
+    }];
+    [self.view addGestureRecognizer:tap];
+    
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] init];
+    [self.view addGestureRecognizer:pan];
+    
+    [pan addActionUsingBlock:^(UIGestureRecognizer * _Nonnull sender) {
+        NSLog(@"0000 pan.state = %zd", sender.state);
+    }];
+    
+    [pan addActionUsingBlock:^(UIGestureRecognizer * _Nonnull sender) {
+        NSLog(@"1111 pan.state = %zd", sender.state);
+    }];
+    
+    [pan addActionUsingBlock:^(UIGestureRecognizer * _Nonnull sender) {
+        NSLog(@"2222 pan.state = %zd", sender.state);
+    }];
+    
+    [pan removeAllActions];
 }
 
 @end

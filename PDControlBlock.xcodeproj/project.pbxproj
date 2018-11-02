@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC1BB1AB218ADDE500CD4A64 /* UIGestureRecognizer+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = EC1BB1AA218ADDE500CD4A64 /* UIGestureRecognizer+Block.m */; };
 		EC2927DD216B0D8F006C16A3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2927DC216B0D8F006C16A3 /* AppDelegate.m */; };
 		EC2927E0216B0D8F006C16A3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC2927DF216B0D8F006C16A3 /* ViewController.m */; };
 		EC2927E3216B0D8F006C16A3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC2927E1216B0D8F006C16A3 /* Main.storyboard */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC1BB1A9218ADDE500CD4A64 /* UIGestureRecognizer+Block.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIGestureRecognizer+Block.h"; sourceTree = "<group>"; };
+		EC1BB1AA218ADDE500CD4A64 /* UIGestureRecognizer+Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIGestureRecognizer+Block.m"; sourceTree = "<group>"; };
 		EC2927D8216B0D8F006C16A3 /* PDControlBlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDControlBlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC2927DB216B0D8F006C16A3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		EC2927DC216B0D8F006C16A3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 			children = (
 				EC29280E216B2BAF006C16A3 /* UIControl+Block.h */,
 				EC29280F216B2BAF006C16A3 /* UIControl+Block.m */,
+				EC1BB1A9218ADDE500CD4A64 /* UIGestureRecognizer+Block.h */,
+				EC1BB1AA218ADDE500CD4A64 /* UIGestureRecognizer+Block.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -279,6 +284,7 @@
 				EC292810216B2BAF006C16A3 /* UIControl+Block.m in Sources */,
 				EC2927EB216B0D91006C16A3 /* main.m in Sources */,
 				EC2927DD216B0D8F006C16A3 /* AppDelegate.m in Sources */,
+				EC1BB1AB218ADDE500CD4A64 /* UIGestureRecognizer+Block.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
